@@ -3,6 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--    two-way databinding to get and set new shoe data-->
+    <data>
+        <import type="com.udacity.shoestore.Converter"/>
+        <variable
+            name="newShoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
+
+    <!--   add shoe detail UI to make more flexible design, need to adjust UI to different screens  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,6 +63,7 @@
             android:layout_marginTop="-15dp"
             android:ems="8"
             android:inputType="textPersonName"
+            android:text="@={newShoe.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/shoename_label"
@@ -66,8 +76,10 @@
             android:layout_marginTop="16dp"
             android:ems="8"
             android:inputType="textPersonName"
+            android:text="@={newShoe.company}"
             app:layout_constraintStart_toStartOf="@+id/shoename_edit"
             app:layout_constraintTop_toBottomOf="@+id/shoename_edit" />
+
 
         <EditText
             android:id="@+id/shoesize_edit"
@@ -75,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="8"
-            android:inputType="textPersonName"
+            android:text="@={Converter.doubleToString(newShoe.size)}"
             app:layout_constraintStart_toStartOf="@+id/shoecompany_edit"
             app:layout_constraintTop_toBottomOf="@+id/shoecompany_edit" />
 
@@ -86,6 +98,7 @@
             android:layout_marginTop="16dp"
             android:ems="8"
             android:inputType="textPersonName"
+            android:text="@={newShoe.description}"
             app:layout_constraintStart_toStartOf="@+id/shoesize_edit"
             app:layout_constraintTop_toBottomOf="@+id/shoesize_edit" />
 
@@ -110,6 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

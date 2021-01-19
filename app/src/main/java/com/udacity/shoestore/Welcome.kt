@@ -50,12 +50,6 @@ class welcome : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.action_welcome_to_instruction)
             }
         }
-//        val view = inflater.inflate(R.layout.fragment_welcome, container, false)
-//
-//        view.findViewById<Button>(R.id.instruction_button).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_welcome_to_instruction)
-//        }
-
 
         return view
     }

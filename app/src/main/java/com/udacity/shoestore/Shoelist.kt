@@ -1,9 +1,7 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
@@ -11,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoelistBinding
+import com.udacity.shoestore.databinding.ListShoesBinding
 import com.udacity.shoestore.models.ShoeViewModel
 
 
@@ -61,23 +62,42 @@ class shoelist : Fragment() {
 
         //add shoe to view group
         shoeViewmModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
-            shoes.forEach{
-                val newShoe = Button(container?.context)
-                newShoe.layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT)
-                newShoe.text = "${it.name}(${it.company}) size: ${it.size} "
-                newShoe.isAllCaps = false
-
-                binding.container.addView(newShoe)
+            shoes.forEach {
+                DataBindingUtil.inflate<ListShoesBinding>(
+                        layoutInflater,
+                        R.layout.list_shoes,
+                        binding.container,
+                        true
+                ).apply {
+                    this.shoe = it
+                }
             }
-        })
-//        val view = inflater.inflate(R.layout.fragment_shoelist, container, false)
+
+//            shoes.forEach{
+//                val newShoe = Button(container?.context)
+//                newShoe.layoutParams = LinearLayout.LayoutParams(
+//                        LinearLayout.LayoutParams.MATCH_PARENT,
+//                        LinearLayout.LayoutParams.WRAP_CONTENT)
+//                newShoe.text = "${it.name}(${it.company}) size: ${it.size} "
+//                newShoe.isAllCaps = false
 //
-//        view.findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_shoelist_to_shoeDetail)
-//        }
+//                binding.container.addView(newShoe)
+//            }
+        })
+
+        setHasOptionsMenu(true)
+
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Navigation.findNavController(binding.root).navigate(R.id.action_shoelist_to_login)
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

@@ -52,12 +52,6 @@ class instruction : Fragment() {
             }
         }
 
-//
-//        val view =  inflater.inflate(R.layout.fragment_instruction, container, false)
-//
-//        view.findViewById<Button>(R.id.shoelist_button).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_instruction_to_shoelist)
-//        }
 
         return view
     }

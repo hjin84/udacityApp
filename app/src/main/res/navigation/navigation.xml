@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/login"
         android:name="com.udacity.shoestore.Login"
-        android:label="fragment_login"
+        android:label="FRAGMENT_LOGIN"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_welcome"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/instruction"
         android:name="com.udacity.shoestore.instruction"
-        android:label="fragment_instruction"
+        android:label="FRAGMENT_INSTRUCTION"
         tools:layout="@layout/fragment_instruction" >
         <action
             android:id="@+id/action_instruction_to_shoelist"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/welcome"
         android:name="com.udacity.shoestore.welcome"
-        android:label="fragment_welcome"
+        android:label="FRAGMENT_WELCOME"
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcome_to_instruction"
@@ -37,22 +37,32 @@
     <fragment
         android:id="@+id/shoelist"
         android:name="com.udacity.shoestore.shoelist"
-        android:label="fragment_shoelist"
+        android:label="FRAGMENT_SHOELIST"
         tools:layout="@layout/fragment_shoelist" >
         <action
             android:id="@+id/action_shoelist_to_shoeDetail"
-            app:destination="@id/shoeDetail" />
+            app:destination="@id/shoeDetail"
+            app:enterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_botton" />
+        <action
+            android:id="@+id/action_shoelist_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetail"
         android:name="com.udacity.shoestore.ShoeDetail"
-        android:label="fragment_shoe_detail"
+        android:label="FRAGMENT_SHOE_DETAIL"
         tools:layout="@layout/fragment_shoe_detail" >
         <action
             android:id="@+id/action_shoeDetail_cancel_to_shoelist"
-            app:destination="@id/shoelist" />
+            app:destination="@id/shoelist"
+            app:enterAnim="@anim/appear"
+            app:exitAnim="@anim/to_botton"
+            app:popExitAnim="@anim/appear" />
         <action
             android:id="@+id/action_shoeDetail_save_to_shoelist"
-            app:destination="@id/shoelist" />
+            app:destination="@id/shoelist"
+            app:enterAnim="@anim/appear"
+            app:exitAnim="@anim/to_botton" />
     </fragment>
 </navigation>

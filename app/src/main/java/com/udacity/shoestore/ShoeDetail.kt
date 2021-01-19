@@ -29,12 +29,13 @@ class ShoeDetail : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    //binding 객체는 xml 이름을 그래도 쓰되 Pascal로 바꾸면 됨!!!
     private lateinit var binding: FragmentShoeDetailBinding
 
     // Use the 'by activityViewModels()' Kotlin property delegate
     // from the fragment-ktx artifact
     private val shoeViewmModel: ShoeViewModel by activityViewModels()
+
+    val newShoe:Shoe = Shoe("", 0.0, "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,24 +50,14 @@ class ShoeDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
+        binding.newShoe = newShoe
 
         val view = binding.root
 
         binding.apply {
             shoeDetailSaveButton.setOnClickListener{
-                val name: String = shoenameEdit.text.toString()
-                val sizeString: String = shoesizeEdit.text.toString()
 
-                var size: Double = 0.0
-                try{
-                    if(sizeString != "") size = sizeString.toDouble()
-                }catch(e: Exception){
-                    //
-                }
-
-                val company: String = shoecompanyEdit.text.toString()
-                val description: String = shoedescrEdit.text.toString()
-                shoeViewmModel?.onAdd(Shoe(name,size,company,description))
+                shoeViewmModel?.onAdd(this.newShoe)
 
                 Navigation.findNavController(view).navigate(R.id.action_shoeDetail_save_to_shoelist)
             }
@@ -75,16 +66,6 @@ class ShoeDetail : Fragment() {
             }
         }
 
-
-//        // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_shoe_detail, container, false)
-//
-//        view.findViewById<Button>(R.id.shoeDetail_save_button).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_shoeDetail_save_to_shoelist)
-//        }
-//        view.findViewById<Button>(R.id.shoeDetail_cancel_button).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_shoeDetail_cancel_to_shoelist)
-//        }
         return view
     }
 

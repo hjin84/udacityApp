@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import com.udacity.shoestore.databinding.FragmentLoginBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +26,11 @@ class Login : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentLoginBinding
+
+    data class User(var id: String, var password: String)
+    val userData: User = User("", "")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,13 +44,18 @@ class Login : Fragment() {
             savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding.userData = userData
 
-        view.findViewById<Button>(R.id.login_button).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_login_to_welcome)
-        }
-        view.findViewById<Button>(R.id.login_with_button).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_loginwith_to_welcome)
+        val view = binding.root
+
+        binding.apply {
+            loginButton.setOnClickListener{
+                Navigation.findNavController(view).navigate(R.id.action_login_to_welcome)
+            }
+            loginWithButton.setOnClickListener{
+                Navigation.findNavController(view).navigate(R.id.action_loginwith_to_welcome)
+            }
         }
 
         return view

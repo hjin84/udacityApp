@@ -20,7 +20,7 @@ import com.udacity.shoestore.models.Shoe
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var drawerLayout: DrawerLayout
+//    private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration : AppBarConfiguration
     private lateinit var viewModel: ShoeViewModel
 
@@ -31,28 +31,24 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
         val binding = DataBindingUtil.setContentView <ActivityMainBinding>(this, R.layout.activity_main)
-        drawerLayout = binding.drawerLayout
+        //drawerLayout = binding.drawerLayout
 
         val navController = this.findNavController(R.id.myNavHostFragment)
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.shoelist))
         // prevent nav gesture if not on start destination
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
-            if (nd.id == nc.graph.startDestination) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            } else {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
+            val showButton = showUpButton(nd.id)
+            supportActionBar?.setDisplayShowHomeEnabled(showButton)
+            supportActionBar?.setDisplayHomeAsUpEnabled(showButton)
         }
         NavigationUI.setupWithNavController(binding.navView, navController)
-
-//        val model: ShoeViewModel by viewModels()
-//        model.getShoes().observe(this, Observer<List<Shoe>>{ shoes ->
-//            // update UI
-//        })
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+    private fun showUpButton(id: Int): Boolean {
+        return id != R.id.welcome && id != R.id.instruction
+                && id != R.id.shoelist && id != R.id.login
     }
 }
