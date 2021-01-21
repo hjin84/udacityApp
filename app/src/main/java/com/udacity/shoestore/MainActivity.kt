@@ -5,11 +5,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
@@ -33,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView <ActivityMainBinding>(this, R.layout.activity_main)
         //drawerLayout = binding.drawerLayout
 
-        val navController = this.findNavController(R.id.myNavHostFragment)
+        //findNavController(R.id.nav_host_fragment)
+        val navController = (supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment).navController
         appBarConfiguration = AppBarConfiguration(setOf(R.id.shoelist))
         // prevent nav gesture if not on start destination
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
@@ -50,5 +54,12 @@ class MainActivity : AppCompatActivity() {
     private fun showUpButton(id: Int): Boolean {
         return id != R.id.welcome && id != R.id.instruction
                 && id != R.id.shoelist && id != R.id.login
+    }
+    override fun onBackPressed() {
+        val navController = (supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment).navController
+        if (navController.currentDestination!!.id != R.id.shoeDetail)
+            return
+
+        super.onBackPressed()
     }
 }

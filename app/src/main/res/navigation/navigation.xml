@@ -11,10 +11,13 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_welcome"
-            app:destination="@id/welcome" />
+            app:destination="@id/welcome"
+            app:launchSingleTop="true"
+/>
         <action
             android:id="@+id/action_loginwith_to_welcome"
-            app:destination="@id/welcome" />
+            app:destination="@id/welcome"
+/>
     </fragment>
     <fragment
         android:id="@+id/instruction"
@@ -23,7 +26,8 @@
         tools:layout="@layout/fragment_instruction" >
         <action
             android:id="@+id/action_instruction_to_shoelist"
-            app:destination="@id/shoelist" />
+            app:destination="@id/shoelist"
+/>
     </fragment>
     <fragment
         android:id="@+id/welcome"
@@ -32,7 +36,8 @@
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcome_to_instruction"
-            app:destination="@id/instruction" />
+            app:destination="@id/instruction"
+        />
     </fragment>
     <fragment
         android:id="@+id/shoelist"
@@ -46,7 +51,7 @@
             app:popExitAnim="@anim/to_botton" />
         <action
             android:id="@+id/action_shoelist_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"/>
     </fragment>
     <fragment
         android:id="@+id/shoeDetail"
@@ -58,11 +63,11 @@
             app:destination="@id/shoelist"
             app:enterAnim="@anim/appear"
             app:exitAnim="@anim/to_botton"
-            app:popExitAnim="@anim/appear" />
+            app:popExitAnim="@anim/appear"/>
         <action
             android:id="@+id/action_shoeDetail_save_to_shoelist"
             app:destination="@id/shoelist"
             app:enterAnim="@anim/appear"
-            app:exitAnim="@anim/to_botton" />
+            app:exitAnim="@anim/to_botton"/>
     </fragment>
 </navigation>

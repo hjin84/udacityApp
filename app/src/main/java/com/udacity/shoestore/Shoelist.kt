@@ -35,7 +35,7 @@ class shoelist : Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate
     // from the fragment-ktx artifact
-    private val shoeViewmModel: ShoeViewModel by activityViewModels()
+    private val shoeViewModel: ShoeViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,7 @@ class shoelist : Fragment() {
         }
 
         //add shoe to view group
-        shoeViewmModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
+        shoeViewModel.shoes.observe(viewLifecycleOwner, Observer { shoes ->
             shoes.forEach {
                 DataBindingUtil.inflate<ListShoesBinding>(
                         layoutInflater,

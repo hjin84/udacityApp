@@ -33,7 +33,7 @@ class ShoeDetail : Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate
     // from the fragment-ktx artifact
-    private val shoeViewmModel: ShoeViewModel by activityViewModels()
+    private val shoeViewModel: ShoeViewModel by activityViewModels()
 
     val newShoe:Shoe = Shoe("", 0.0, "", "")
 
@@ -57,12 +57,14 @@ class ShoeDetail : Fragment() {
         binding.apply {
             shoeDetailSaveButton.setOnClickListener{
 
-                shoeViewmModel?.onAdd(this.newShoe)
+                shoeViewModel?.onAdd(this.newShoe)
 
-                Navigation.findNavController(view).navigate(R.id.action_shoeDetail_save_to_shoelist)
+                Navigation.findNavController(view).navigateUp()
+                //Navigation.findNavController(view).navigate(R.id.action_shoeDetail_save_to_shoelist)
             }
             shoeDetailCancelButton.setOnClickListener{
-                Navigation.findNavController(view).navigate(R.id.action_shoeDetail_cancel_to_shoelist)
+                Navigation.findNavController(view).navigateUp()
+                //Navigation.findNavController(view).navigate(R.id.action_shoeDetail_cancel_to_shoelist)
             }
         }
 
