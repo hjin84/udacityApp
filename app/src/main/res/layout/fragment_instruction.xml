@@ -3,28 +3,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--   add instruction UI to make more flexible design, need to adjust UI to different screens -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--LinearLayout with android:orientation="vertical" attribute is better
+        because the number of views is only 3 and they all can be positioned vertically to each other in a simple manner -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/instrct_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
             android:text="@string/instruction_title"
             android:textSize="@dimen/title_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/instrct_content_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:text="@string/instruction_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +41,11 @@
             android:id="@+id/shoelist_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:text="@string/shoe_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/instrct_content_label" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

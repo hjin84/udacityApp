@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--   add welcome page UI to make more flexible design, need to adjust UI to different screens   -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--LinearLayout with android:orientation="vertical" attribute is better
+        because the number of views is only 3 and they all can be positioned vertically to each other in a simple manner -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/welcome_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
             android:fontFamily="@font/roboto"
             android:text="@string/welcome_title"
             android:textSize="24sp"
@@ -26,6 +30,7 @@
             android:id="@+id/welcome_content_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:text="@string/welcome_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +43,7 @@
             android:id="@+id/instruction_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:text="@string/instruction"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,5 +52,5 @@
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

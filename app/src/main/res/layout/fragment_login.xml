@@ -9,62 +9,63 @@
             type="com.udacity.shoestore.Login.User" />
     </data>
 
-    <!--   add login UI to make more flexible design, need to adjust UI to different screens  -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--LinearLayout with android:orientation="vertical" attribute is better
+        because they all can be positioned vertically to each other in a simple manner -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <EditText
-            android:id="@+id/email_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:text="@={userData.id}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3" />
-
-        <EditText
-            android:id="@+id/password_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:ems="10"
-            android:text="@={userData.password}"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_edit" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/email_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="120dp"
             android:text="@string/email"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/email_edit"
             app:layout_constraintStart_toStartOf="@+id/email_edit" />
 
+        <EditText
+            android:id="@+id/email_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:text="@={userData.id}" />
+
         <TextView
             android:id="@+id/password_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/password"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/password_edit"
             app:layout_constraintStart_toStartOf="@+id/password_edit" />
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="@={userData.password}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_edit" />
 
         <Button
             android:id="@+id/login_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/login"
             android:textAllCaps="false"
@@ -73,11 +74,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_edit" />
 
+        <TextView
+            android:id="@+id/line_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
         <Button
             android:id="@+id/login_with_button"
             style="@android:style/Widget.Material.Light.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/signin_with_google"
             android:textAllCaps="false"
@@ -86,15 +100,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line_text" />
 
-        <TextView
-            android:id="@+id/line_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/or"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_button" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
